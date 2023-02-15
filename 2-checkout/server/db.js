@@ -1,8 +1,5 @@
 const mysql = require("mysql2");
 const Promise = require("bluebird");
-require("dotenv").config();
-
-
 
 // Configure process.env variables in ../.env
 const connection = mysql.createConnection({
@@ -12,7 +9,10 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME,
 });
 
+
+
 const db = Promise.promisifyAll(connection, { multiArgs: true });
+
 
 db.connectAsync()
   .then(() => console.log(`Connected to MySQL as id: ${db.threadId}`))

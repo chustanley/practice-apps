@@ -5,6 +5,7 @@ const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
 
 // Establishes connection to the database on server start
+// This calls the db.js page and runs the connnection for mysql.
 const db = require("./db");
 
 const app = express();
@@ -19,12 +20,12 @@ app.use(logger);
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-/**** 
- * 
- * 
+/****
+ *
+ *
  * Other routes here....
  *
- * 
+ *
  */
 
 app.listen(process.env.PORT);
