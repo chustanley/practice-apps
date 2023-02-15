@@ -1,5 +1,8 @@
 const mysql = require("mysql2");
 const Promise = require("bluebird");
+require("dotenv").config();
+
+
 
 // Configure process.env variables in ../.env
 const connection = mysql.createConnection({
