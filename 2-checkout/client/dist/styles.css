@@ -85,7 +85,7 @@ main {
   background-color: white;
 }
 
-#accountNextButton {
+.nextButton {
   position: absolute;
   right:    0;
   bottom:   0;

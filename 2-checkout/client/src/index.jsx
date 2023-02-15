@@ -2,7 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import Account from './components/Account.jsx';
 import Address from './components/Address.jsx';
-
+import CreditCard from './components/CreditCard.jsx';
+import Confirmation from './components/Confirmation.jsx';
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,8 +11,14 @@ class Home extends React.Component {
     this.state = {
       accountTrigger: false,
       addressTrigger: false,
+      creditCardTrigger: false,
+      confirmationTrigger: false,
       name: '',
-      email: ''
+      email: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      phone: ''
     }
   }
 
@@ -24,14 +31,8 @@ class Home extends React.Component {
   }
 
   hideAccount = (name, email) => {
-
-
-
-
     var name = document.getElementById('nameInput').value;
     var email = document.getElementById('emailInput').value;
-
-
     this.setState({
       accountTrigger: false,
       addressTrigger: true,
@@ -40,9 +41,39 @@ class Home extends React.Component {
     })
   }
 
+  hideAddress = () => {
+    var city = document.getElementById('cityInput').value;
+    var state = document.getElementById('stateInput').value;
+    var zipcode = document.getElementById('zipcodeInput').value;
+    var phone = document.getElementById('phoneInput').value;
+
+    this.setState({
+      addressTrigger: false,
+      creditCardTrigger: true,
+      city: city,
+      state: state,
+      zipcode: zipcode,
+      phone: phone
+    })
+
+  }
+
+  hideCreditCard = () => {
+    this.setState({
+      creditCardTrigger: false,
+      confirmationTrigger: true
+    })
+  }
+
+  hideConfirmation = () => {
+    this.setState({
+      confirmationTrigger: false
+    })
+  }
+
 
   render() {
-
+    console.log(this.state)
     // console.log(this.props) // javascript should be written in the render statement
     //return html
     return <div>
@@ -52,7 +83,9 @@ class Home extends React.Component {
     </p>
     <button onClick={() => {this.triggerAccount()}}>cart</button>
     <Account trigger={this.state.accountTrigger} hideAccount={this.hideAccount} />
-    <Address trigger={this.state.addressTrigger} name={this.state.name} email={this.state.email}/>
+    <Address trigger={this.state.addressTrigger} name={this.state.name} email={this.state.email} hideAddress={this.hideAddress}/>
+    <CreditCard trigger={this.state.creditCardTrigger} hideCreditCard={this.hideCreditCard} />
+    <Confirmation trigger={this.state.confirmationTrigger} info={this.state} hideConfirmation={this.hideConfirmation}/>
   </div>
   }
 }

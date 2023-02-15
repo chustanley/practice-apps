@@ -26,6 +26,18 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
  * Other routes here....
  *
  *
+ * make post request to mysql with the data you want to store
+ *
+ *
+ * when user login, we check if that accoutn is already there?
+ *
+ * but then we have cookies.. so maybe in the beginning at the
+ *  main page check if it has cookies? so then when someone wants to check out itll immediately
+ * udpate state and bring them to the.. confirmation page? with data from sql.
+ *
+ *
+ *
+ *
  */
 
 app.listen(process.env.PORT);

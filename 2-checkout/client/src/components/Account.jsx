@@ -32,7 +32,7 @@ class Account extends React.Component {
             <label htmlFor='password'>Password</label>
             <input id='passwordInput'></input>
           </div>
-        <button onClick={this.props.hideAccount} id='accountNextButton'>next</button>
+        <button onClick={this.props.hideAccount} className='nextButton'>Login</button>
       </div>
     </div>
     ) : '';
