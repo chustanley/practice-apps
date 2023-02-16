@@ -62,7 +62,7 @@ class Home extends React.Component {
           billingZipcode: userArray.billingZip
         })
       },
-      error: (error) => { // if cookie was already in there.. what do we do.
+      error: (error) => { // if cookie was already in there.. what do we do.   // comment
         console.log('failed cookie ---->', error);
 
         this.setState({
