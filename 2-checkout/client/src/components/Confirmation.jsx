@@ -23,6 +23,7 @@ class Confirmation extends React.Component {
 
           <div>
             <h3>Shipping Address</h3>
+            <div>{this.props.info.address}</div>
             <div>{this.props.info.city}</div>
             <div>{this.props.info.state}</div>
             <div>{this.props.info.zipcode}</div>
@@ -30,6 +31,10 @@ class Confirmation extends React.Component {
 
           <div>
             <h3>Billing Information</h3>
+            <div>{this.props.info.creditCard}</div>
+            <div>{this.props.info.expiration}</div>
+            <div>{this.props.info.cvv}</div>
+            <div>{this.props.info.billingZipcode}</div>
           </div>
 
 

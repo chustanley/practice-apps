@@ -1,10 +1,43 @@
 import React from 'react';
-
+var $ = require('jquery');
 class Address extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
+
+savingAddress = () => {
+  var address = document.getElementById('addressInput').value;
+  var city = document.getElementById('cityInput').value;
+  var state = document.getElementById('stateInput').value;
+  var zipcode = document.getElementById('zipcodeInput').value;
+  var phone = document.getElementById('phoneInput').value;
+
+  $.ajax({
+    type: 'POST',
+    url: '/address',
+    data: {
+      email: this.props.email,
+      address: address,
+      city: city,
+      state: state,
+      zipcode: zipcode,
+      phone: phone
+    },
+    success: (success) => {
+      console.log('success', success);
+    },
+    error: (error) => {
+      console.log('error', error);
+    }
+
+  });
+
+
+
+  this.props.hideAddress()
+}
+
 
   render () {
     return (this.props.trigger) ? (
@@ -14,6 +47,11 @@ class Address extends React.Component {
 
         <h3>Name: {this.props.name}</h3>
         <h3>Email: {this.props.email}</h3>
+
+        <div className='accountInput'>
+          <label htmlFor='addressInput'>Address</label>
+          <input id='addressInput'></input>
+        </div>
 
         <div className='accountInput'>
           <label htmlFor='cityInput'>City</label>
@@ -34,7 +72,7 @@ class Address extends React.Component {
           <label htmlFor='phoneInput'>Phone Number</label>
           <input id='phoneInput'></input>
         </div>
-        <button onClick={this.props.hideAddress} className='nextButton'>next</button>
+        <button onClick={this.savingAddress} className='nextButton'>next</button>
       </div>
     </div>
     ) : '';

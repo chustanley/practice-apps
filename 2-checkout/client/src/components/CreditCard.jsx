@@ -1,10 +1,44 @@
 import React from 'react';
-
+var $ = require('jquery');
 class CreditCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
+
+
+
+  addingCreditCard = () => {
+    var creditCard = document.getElementById('creditCardInput').value;
+    var expiration = document.getElementById('expirationInput').value;
+    var cvv = document.getElementById('cvvInput').value;
+    var billingZipcode = document.getElementById('billingZipInput').value;
+    var email = this.props.email;
+
+    $.ajax({
+      type: 'POST',
+      url: 'credit',
+      data: {
+        email: email,
+        creditCard: creditCard,
+        expiration: expiration,
+        cvv: cvv,
+        billingZipcode: billingZipcode
+      },
+      success: (success) => {
+        console.log('success', success);
+      },
+      error: (error) => {
+        console.log('error', error);
+      }
+    });
+
+    this.props.hideCreditCard()
+  }
+
+
+
+
 
   render () {
     return (this.props.trigger) ? (
@@ -31,7 +65,7 @@ class CreditCard extends React.Component {
             <label htmlFor='billingZipInput'>Billing Zipcode</label>
             <input id='billingZipInput'></input>
           </div>
-          <button onClick={this.props.hideCreditCard} className='nextButton'>next</button>
+          <button onClick={this.addingCreditCard} className='nextButton'>next</button>
         </div>
       </div>
     ) : '';

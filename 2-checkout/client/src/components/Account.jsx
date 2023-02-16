@@ -1,4 +1,5 @@
 import React from 'react';
+var $ = require('jquery');
 
 
 class Account extends React.Component {
@@ -7,7 +8,28 @@ class Account extends React.Component {
     this.state = {}
   }
 
+  savingAccountInfo = () => {
+    var name = document.getElementById('nameInput').value;
+    var email = document.getElementById('emailInput').value;
+    var password = document.getElementById('passwordInput').value;
 
+    $.ajax({
+      type: 'POST',
+      url: '/account',
+      data: {
+        name: name,
+        email: email,
+        password: password
+      },
+      success: (success) => {
+        console.log(success);
+        this.props.hideAccount();
+      },
+      error: (error) => {
+        console.log('error', error)
+      }
+    })
+  }
 
   render () {
     return (this.props.trigger) ? (
@@ -32,7 +54,7 @@ class Account extends React.Component {
             <label htmlFor='password'>Password</label>
             <input id='passwordInput'></input>
           </div>
-        <button onClick={this.props.hideAccount} className='nextButton'>Login</button>
+        <button onClick={this.savingAccountInfo} className='nextButton'>Login</button>
       </div>
     </div>
     ) : '';

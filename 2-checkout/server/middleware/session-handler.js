@@ -20,10 +20,10 @@ module.exports = (req, res, next) => {
   }, {});
 
   if (parsedCookies.s_id) {
-    req.session_id = parsedCookies.s_id;
+    req.session_id = parsedCookies.s_id; // assigning parse cookies
   } else {
     req.session_id = uuidv4();
-    res.cookie("s_id", req.session_id);
+    res.cookie("s_id", req.session_id); // if it doesnt exist, create cookie
   }
 
   next();
