@@ -13,7 +13,7 @@ const Add = () => {
 
 
 
-  var loadingList = () => {
+  var loadingList = () => { //comment
     $.ajax({
       type: 'GET',
       url: '/list',
